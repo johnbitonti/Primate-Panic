@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/climbing_sound.mp3-8111aa6f3d17d9a54693f1bb2918bb8d.mp3str"
+
+[deps]
+
+source_file="res://SoundFX/climbing_sound.mp3"
+dest_files=[ "res://.import/climbing_sound.mp3-8111aa6f3d17d9a54693f1bb2918bb8d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

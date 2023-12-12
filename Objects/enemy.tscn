@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/Enemies/enemy .png" type="Texture" id=1]
+[ext_resource path="res://Scripts/enemy.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=21]
+radius = 177.521
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 1.2063, 7.84365 )
+
+[sub_resource type="CapsuleShape2D" id=22]
+radius = 13.0458
+height = 5.07135
+
+[node name="enemy" type="KinematicBody2D" groups=["enemy"]]
+light_mask = 0
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="activeRadius" type="Area2D" parent="."]
+visible = false
+position = Vector2( 79.303, 138.221 )
+collision_layer = 0
+
+[node name="radius" type="CollisionShape2D" parent="activeRadius"]
+shape = SubResource( 21 )
+
+[node name="enemyanimation" type="AnimatedSprite" parent="."]
+position = Vector2( 82.8209, 133.507 )
+frames = SubResource( 18 )
+playing = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+light_mask = 0
+position = Vector2( 80.1654, 139.189 )
+shape = SubResource( 19 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="hitbox" type="CollisionShape2D" parent="hitbox"]
+light_mask = 0
+position = Vector2( 79.9542, 139.219 )
+shape = SubResource( 22 )
+
+[connection signal="body_entered" from="activeRadius" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

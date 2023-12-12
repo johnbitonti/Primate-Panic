@@ -1,0 +1,156 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Animation" id=17]
+resource_name = "RESET"
+length = 0.01
+
+[sub_resource type="Animation" id=18]
+resource_name = "dissolve"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("transition/ColorRect1:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 0 ), Color( 0.0196078, 0.152941, 0.0470588, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("transition/ColorRect2:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 0 ), Color( 0.0196078, 0.152941, 0.0470588, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("transition/ColorRect3:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 0 ), Color( 0.0196078, 0.152941, 0.0470588, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("transition/ColorRect4:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 0 ), Color( 0.0196078, 0.152941, 0.0470588, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("transition/ColorRect5:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 0 ), Color( 0.0196078, 0.152941, 0.0470588, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("transition/ColorRect6:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 0 ), Color( 0.0196078, 0.152941, 0.0470588, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "fadein"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("transition/fullrect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0196078, 0.152941, 0.0470588, 1 ), Color( 0.0196078, 0.152941, 0.0470588, 0 ) ]
+}
+
+[node name="transition" type="AnimationPlayer"]
+anims/RESET = SubResource( 17 )
+anims/dissolve = SubResource( 18 )
+anims/fadein = SubResource( 19 )
+
+[node name="ColorRect1" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 108.0
+margin_bottom = -90.0
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_right = 214.0
+margin_bottom = -90.0
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_left = 213.334
+margin_right = 320.001
+margin_bottom = -90.0
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_left = 0.5
+margin_top = 90.0
+margin_right = 107.167
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = 90.0
+margin_right = 214.0
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_left = 213.334
+margin_top = 90.0
+margin_right = 320.001
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )
+
+[node name="fullrect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.0196078, 0.152941, 0.0470588, 0 )

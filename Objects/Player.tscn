@@ -1,0 +1,138 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Sprites/Garry/garrysheet.png" type="Texture" id=1]
+[ext_resource path="res://SoundFX/jump.mp3" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Enemies/enemy .png" type="Texture" id=3]
+[ext_resource path="res://SoundFX/climbing_sound.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=9]
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 34, 35, 34 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 35, 34, 35, 34 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 35, 33 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 34, 35, 34 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 35, 0, 35, 34 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 70, 0, 35, 34 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 70, 34, 35, 34 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 68, 35, 34 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "climb",
+"speed": 8.06
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "idle_climb",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "jump",
+"speed": 1.2
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 7, 11.0335 )
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 4.0
+height = 5.99934
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+script = ExtResource( 9 )
+
+[node name="enemyanimation" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 4, 0 )
+frames = SubResource( 27 )
+playing = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="player collision" type="CollisionShape2D" parent="."]
+position = Vector2( 1.2331, 1.97451 )
+shape = SubResource( 8 )
+
+[node name="vineGrabBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="vine grab box" type="CollisionShape2D" parent="vineGrabBox"]
+light_mask = 0
+position = Vector2( 1.12085, 0.825893 )
+rotation = 1.56105
+shape = SubResource( 7 )
+
+[node name="jumpFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0.53093, 0.53093 )
+stream = ExtResource( 2 )
+
+[node name="climbFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0.0589943, -0.53093 )
+stream = ExtResource( 8 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="vineGrabBox" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="vineGrabBox" to="." method="_on_Area2D_body_exited"]
+[connection signal="child_exiting_tree" from="vineGrabBox/vine grab box" to="." method="_on_vine_grab_box_child_exiting_tree"]

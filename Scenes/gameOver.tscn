@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Music/death.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Textures/respawnBackground.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Menu_Items/quitbackground.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Menu_Items/YouDied.png" type="Texture" id=4]
+[ext_resource path="res://Textures/respawn.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Menu_Items/quit.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/gameOver.gd" type="Script" id=7]
+[ext_resource path="res://Textures/stage_select_background.png" type="Texture" id=8]
+[ext_resource path="res://Textures/dead.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Garry/idle.png" type="Texture" id=10]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.81634, 0.896468 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 33.3879, 9.5 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "New Anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true, false, true, false ]
+}
+
+[node name="gameOver" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="StageSelectBackground" type="Sprite" parent="."]
+position = Vector2( 159.975, 90.0802 )
+scale = Vector2( 2.50928, 2.50928 )
+texture = ExtResource( 8 )
+
+[node name="you died" type="Sprite" parent="."]
+position = Vector2( 150.757, 30.1292 )
+scale = Vector2( 4.07464, 5.62583 )
+texture = ExtResource( 4 )
+
+[node name="respawnBackground" type="Sprite" parent="."]
+visible = false
+position = Vector2( 117.202, 145.325 )
+scale = Vector2( 3.36393, 3.43388 )
+texture = ExtResource( 2 )
+
+[node name="respawntext" type="Sprite" parent="."]
+position = Vector2( 118.724, 144.934 )
+scale = Vector2( 3.41813, 3.41813 )
+texture = ExtResource( 5 )
+
+[node name="respawn" type="Area2D" parent="."]
+position = Vector2( -2527.19, 542.955 )
+scale = Vector2( 9.21147, 12.7182 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="respawn"]
+position = Vector2( 287.133, -31.2851 )
+shape = SubResource( 2 )
+
+[node name="quit" type="Area2D" parent="."]
+position = Vector2( 80.635, 10.7093 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="quit"]
+position = Vector2( 148.11, 135.5 )
+shape = SubResource( 3 )
+
+[node name="quitBackground" type="Sprite" parent="."]
+visible = false
+position = Vector2( 230.209, 146.17 )
+scale = Vector2( 2.07042, 2.08125 )
+texture = ExtResource( 3 )
+
+[node name="quittext" type="Sprite" parent="."]
+position = Vector2( 232.028, 147.249 )
+scale = Vector2( 2.08668, 2.08668 )
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 144, 95 )
+stream = ExtResource( 1 )
+volume_db = -2.659
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/New Anim" = SubResource( 4 )
+
+[node name="Dead" type="Sprite" parent="AnimationPlayer"]
+position = Vector2( 154.351, 86.143 )
+scale = Vector2( 1.85968, 1.89835 )
+texture = ExtResource( 9 )
+
+[node name="Idle" type="Sprite" parent="AnimationPlayer"]
+position = Vector2( 153.465, 87.0879 )
+scale = Vector2( 1.94494, 1.94494 )
+texture = ExtResource( 10 )
+
+[connection signal="ready" from="." to="." method="_on_gameOver_ready"]
+[connection signal="input_event" from="respawn" to="." method="_on_respawn_input_event"]
+[connection signal="mouse_exited" from="respawn" to="." method="_on_respawn_mouse_exited"]
+[connection signal="input_event" from="quit" to="." method="_on_quit_input_event"]
+[connection signal="mouse_exited" from="quit" to="." method="_on_quit_mouse_exited"]

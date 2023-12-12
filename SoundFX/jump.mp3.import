@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/jump.mp3-4974363ead9e00a5c6a441903dc6cdb0.mp3str"
+
+[deps]
+
+source_file="res://SoundFX/jump.mp3"
+dest_files=[ "res://.import/jump.mp3-4974363ead9e00a5c6a441903dc6cdb0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
